@@ -1,0 +1,79 @@
+{
+  "mode": "train",
+  "checkpoint": null,
+  "data_dir": "datasets/cdl-c/normalized",
+  "epochs": 300,
+  "position_encoding": "1d",
+  "steps_per_epoch": 200,
+  "batch_size": 256,
+  "learning_rate": 0.002,
+  "max_grad_norm": null,
+  "min_learning_rate": 1e-05,
+  "warmup_epochs": 50,
+  "lr_scheduler": "cosine",
+  "plateau_factor": 0.1,
+  "plateau_patience": 10,
+  "seed": 123,
+  "snr_values": [
+    -10.0,
+    -5.0,
+    0.0,
+    5.0,
+    10.0,
+    15.0,
+    20.0,
+    25.0,
+    30.0
+  ],
+  "flow_steps": 5,
+  "save_dir": "models/fm_receiver_final/seed123/cdl-c",
+  "version": "20261020_v2",
+  "overwrite": false,
+  "swanlab_project": "Research-Flow_Matching_Receiver_Final",
+  "swanlab_name": "20261020_v2",
+  "swanlab_mode": "disabled",
+  "train_path": "datasets/cdl-c/normalized/cdl_C_uplink_N10000_B100_T14_F64_SCS15000_Fc3.5GHz_DS300ns_SISO_V0-35mps_train.pt",
+  "val_path": "datasets/cdl-c/normalized/cdl_C_uplink_N10000_B100_T14_F64_SCS15000_Fc3.5GHz_DS300ns_SISO_V0-35mps_val.pt",
+  "test_path": "datasets/cdl-c/normalized/cdl_C_uplink_N10000_B100_T14_F64_SCS15000_Fc3.5GHz_DS300ns_SISO_V0-35mps_test.pt",
+  "modulations": [
+    "QPSK",
+    "16QAM",
+    "64QAM"
+  ],
+  "modulation_sampling": "per_sample_uniform",
+  "modulation_conditioning": false,
+  "device": "cuda",
+  "model": {
+    "name": "DiT",
+    "input_shape": [
+      6,
+      14,
+      64
+    ],
+    "output_shape": [
+      2,
+      14,
+      64
+    ],
+    "hidden_dim": 40,
+    "depth": 6,
+    "num_heads": 4,
+    "patch_size": [
+      2,
+      4
+    ],
+    "position_encoding": "1d"
+  },
+  "pilot_power_factor": 0.1,
+  "snr_db": 30.0,
+  "time_sampling": {
+    "distribution": "logit_normal",
+    "mean": -0.8,
+    "std": 0.8
+  },
+  "velocity_denominator_min": 0.05,
+  "learning_rate_after_scheduler": 1.007856101720297e-05,
+  "best_epoch": 299,
+  "best_val_loss": 0.007603231530636549,
+  "checkpoint_path": "models/fm_receiver_final/seed123/cdl-c/20261020_v2/fmreceiver.pt"
+}
