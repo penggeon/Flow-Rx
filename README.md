@@ -1,8 +1,8 @@
 # Flow-Rx
 
-Code for **FlowRx: A Conditional Flow-Matching OFDM Receiver for Superimposed-Pilot**.
+Code accompanying the unpublished manuscript **FlowRx: A Conditional Flow-Matching OFDM Receiver for Superimposed-Pilot**.
 
-Flow-Rx learns a conditional transport from Gaussian noise to a clean QAM data grid. A time-conditioned patch Transformer predicts the clean endpoint from the intermediate state, received grid, and known pilot. One model handles QPSK, 16QAM, and 64QAM. This repository contains the paper's final receiver, CDL channel generation, BER and 128-bit block-throughput evaluation, and one trained CDL-C checkpoint.
+Flow-Rx learns a conditional transport from Gaussian noise to a clean QAM data grid. A time-conditioned patch Transformer predicts the clean endpoint from the intermediate state, received grid, and known pilot. One model handles QPSK, 16QAM, and 64QAM. This repository contains the receiver implementation, CDL channel generation, BER and 128-bit block-throughput evaluation, and one trained CDL-C checkpoint.
 
 ## Contents
 
@@ -26,7 +26,7 @@ source .venv/bin/activate
 python -m pip install -r requirements.txt
 ```
 
-The channel generator was developed with Sionna 2.1.0. The recorded training environment used PyTorch 2.14.0+cu130. A CUDA device is helpful for the paper-scale experiment; the receiver chooses CPU when CUDA is unavailable. Install a PyTorch build compatible with your system before installing the remaining packages if necessary.
+The channel generator was developed with Sionna 2.1.0. The recorded training environment used PyTorch 2.14.0+cu130. A CUDA device is helpful for the full experiment; the receiver chooses CPU when CUDA is unavailable. Install a PyTorch build compatible with your system before installing the remaining packages if necessary.
 
 ## Reproduce the channel dataset
 
@@ -48,7 +48,7 @@ python -m src.flow_rx --mode train \
   --swanlab-mode disabled
 ```
 
-The script selects the checkpoint with the lowest validation loss and then evaluates all three modulations. Outputs go to `runs/<version>/`. The paper uses pilot fraction 0.1, training SNR 30 dB, logit-normal flow time with mean -0.8 and standard deviation 0.8, six DiT blocks, hidden width 40, four attention heads, and 2×4 patches. The checkpoint in this package was trained with seed 123; its full original settings are in `checkpoints/seed123/training_config.json`. That file retains paths from the original experiment as provenance; use the commands above in this package.
+The script selects the checkpoint with the lowest validation loss and then evaluates all three modulations. Outputs go to `runs/<version>/`. The manuscript specifies pilot fraction 0.1, training SNR 30 dB, logit-normal flow time with mean -0.8 and standard deviation 0.8, six DiT blocks, hidden width 40, four attention heads, and 2×4 patches. The checkpoint in this package was trained with seed 123; its full original settings are in `checkpoints/seed123/training_config.json`. That file retains paths from the original experiment as provenance; use the commands above in this package.
 
 ## Evaluate the included checkpoint
 
@@ -88,7 +88,7 @@ The package implements uncoded SISO reception under ideal timing and carrier syn
 
 ## Citation
 
-Zhenpeng Ge, Yitong Liu, Meng Zou, and Hongwen Yang, “FlowRx: A Conditional Flow-Matching OFDM Receiver for Superimposed-Pilot,” 2026. Add the publication venue and DOI when available.
+The manuscript has not been published. If you refer to this work, cite it as: Zhenpeng Ge, Yitong Liu, Meng Zou, and Hongwen Yang, “FlowRx: A Conditional Flow-Matching OFDM Receiver for Superimposed-Pilot,” unpublished manuscript, 2026. Publication details will be added when available.
 
 ## License
 
